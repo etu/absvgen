@@ -17,6 +17,11 @@ func Get(moduleName string) Module {
 		return Solid{}
 	}
 
+	if moduleName == "squares" {
+		log.Print(fmt.Sprintf("[get module: %s] Requested module found, returning Squares{}", moduleName))
+		return Squares{}
+	}
+
 	log.Print(fmt.Sprintf("[get module: %s] Requested module not found, returning Dummy{}", moduleName))
 
 	return Dummy{}
