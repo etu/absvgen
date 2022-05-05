@@ -5,5 +5,7 @@ pkgs.mkShell {
     gnumake
     go
     gopls
+
+    librsvg
   ];
 }

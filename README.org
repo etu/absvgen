@@ -2,6 +2,29 @@
 absvgen is a command line tool to specify a set of rules and to get an SVG
 back that can then be converted to different formats using other tools.
 
+** Usage
+The command ~absvgen~ requires the configuration flag ~--spec~ with a path to
+a valid specification file. It also accepts the flag ~--debug~ to enable
+debug output.
+
+So basic usage goes like this:
+#+BEGIN_SRC
+  absvgen --spec path/to/spec.yaml [--debug]
+#+END_SRC
+
+This will output the resulting SVG to stdout, if you have the debug flag
+enabled, the debug messages will be on stderr.
+
+Save file as SVG:
+#+BEGIN_SRC
+  absvgen --spec path/to/spec.yaml [--debug] > target-file.svg
+#+END_SRC
+
+You can also choose to convert it to PNG on the fly:
+#+BEGIN_SRC
+  absvgen --spec path/to/spec.yaml [--debug] | rsvg-convert > target-file.png
+#+END_SRC
+
 ** Basic YAML config file structure
 So the configuration file is a YAML file. The basic file looks like this:
 #+BEGIN_SRC yaml
