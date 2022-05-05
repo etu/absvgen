@@ -32,6 +32,11 @@ func Get(moduleName string) Module {
 		return Stripes{}
 	}
 
+	if moduleName == "hexagons" {
+		log.Print(fmt.Sprintf("[get module: %s] Requested module found, returning Hexagons{}", moduleName))
+		return Hexagons{}
+	}
+
 	log.Print(fmt.Sprintf("[get module: %s] Requested module not found, returning Dummy{}", moduleName))
 
 	return Dummy{}

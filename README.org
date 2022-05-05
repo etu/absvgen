@@ -46,6 +46,25 @@ consist of modules. The modules uses different options to make different
 patterns on the resulting image.
 
 ** Modules
+*** Hexagons (Also known as [[https://www.youtube.com/watch?v=thOifuHs6eY][Bestagons]])
+The =hexagons= module generates a polygon object in shapes of hexagons that
+takes up the full image, it also accepts =size= as a parameter to determine
+how many percentage of the image width the hexagons should be in size. It
+also accepts a list of colors as input to use as colors for the hexagons,
+when the list runs out it starts over.
+
+The layers specification for a =solid= module can look like this:
+#+BEGIN_SRC yaml
+  - module: hexagons
+    size: 10
+    colors:
+      - '#0f1784'
+      - '#420f84'
+      - '#0f5284'
+      - '#0f3284'
+      - '#270f84'
+#+END_SRC
+
 *** Solid
 The =solid= module generates a rectangle object that takes up the full image,
 it also accepts a color as input to use as color for the rectangle.
