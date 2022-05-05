@@ -2,6 +2,9 @@ package main // import "github.com/etu/absvgen"
 
 import (
 	"flag"
+	"fmt"
+
+	"github.com/etu/absvgen/src/spec"
 )
 
 func main() {
@@ -14,4 +17,7 @@ func main() {
 	flag.BoolVar(&debug, "debug", false, "Enable or disable debug output")
 	flag.StringVar(&specFile, "spec", "spec.yaml", "Specify path to the spec.yaml file")
 	flag.Parse()
+
+	spec := spec.New(specFile)
+	fmt.Println(spec)
 }
