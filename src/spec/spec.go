@@ -16,9 +16,10 @@ type SpecFile struct {
 }
 
 type SpecLayer struct {
-	Module string   `yaml:"module"`
-	Size   uint8    `yaml:"size"`
-	Colors []string `yaml:"colors"`
+	Module string            `yaml:"module"`
+	Size   uint8             `yaml:"size"`
+	Colors []string          `yaml:"colors"`
+	Args   map[string]string `yaml:"args"`
 }
 
 func New(specFile string) SpecFile {
