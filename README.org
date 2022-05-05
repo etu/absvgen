@@ -47,93 +47,122 @@ patterns on the resulting image.
 
 ** Modules
 *** Hexagons (Also known as [[https://www.youtube.com/watch?v=thOifuHs6eY][Bestagons]])
+[[https://raw.githubusercontent.com/etu/absvgen/main/.github/hexagons.svg]]
+
 The =hexagons= module generates a polygon object in shapes of hexagons that
 takes up the full image, it also accepts =size= as a parameter to determine
 how many percentage of the image width the hexagons should be in size. It
 also accepts a list of colors as input to use as colors for the hexagons,
 when the list runs out it starts over.
 
-The layers specification for a =solid= module can look like this:
+This is the configuration used for the =hexagons= module rendered above:
 #+BEGIN_SRC yaml
-  - module: hexagons
-    size: 10
-    colors:
-      - '#0f1784'
-      - '#420f84'
-      - '#0f5284'
-      - '#0f3284'
-      - '#270f84'
+  width: 500
+  height: 300
+  layers:
+    - module: hexagons
+      size: 10
+      colors:
+        - '#0f1784'
+        - '#420f84'
+        - '#0f5284'
+        - '#0f3284'
+        - '#270f84'
+#+END_SRC
+
+*** Squares
+[[https://raw.githubusercontent.com/etu/absvgen/main/.github/squares.svg]]
+
+The =squares= module generates squares that covers the full image, it also
+accepts =size= as a parameter to determine how many percentage of the image
+width the squares should be in size and a color list that it will pick from
+and start over when the list runs out.
+
+This is the configuration used for the =squares= module rendered above:
+#+BEGIN_SRC yaml
+  width: 500
+  height: 300
+  layers:
+    - module: squares
+      size: 10
+      colors:
+        - '#0f1784'
+        - '#420f84'
+        - '#0f5284'
+        - '#0f3284'
+        - '#270f84'
+        - '#0f6d84'
+        - '#5d0f84'
+#+END_SRC
+
+*** Triangles
+[[https://raw.githubusercontent.com/etu/absvgen/main/.github/triangles.svg]]
+
+The =triangles= module generates a polygon objects that covers the full
+image, it also accepts =size= as a parameter to determine how many percentage
+of the image width the triangles should be in size and a color list that it
+will pick from and start over when the list runs out.
+
+This is the configuration used for the =triangles= module rendered above:
+#+BEGIN_SRC yaml
+  width: 500
+  height: 300
+  layers:
+    - module: triangles
+      size: 10
+      colors:
+        - '#0f1784'
+        - '#420f84'
+        - '#0f5284'
+        - '#0f3284'
+        - '#270f84'
+        - '#0f6d84'
 #+END_SRC
 
 *** Solid
+[[https://raw.githubusercontent.com/etu/absvgen/main/.github/solid.svg]]
+
 The =solid= module generates a rectangle object that takes up the full image,
 it also accepts a color as input to use as color for the rectangle.
 
-The layers specification for a =solid= module can look like this:
+This is the configuration used for the =solid= module rendered above:
 #+BEGIN_SRC yaml
-  - module: solid
-    colors:
-      - magenta
+  width: 500
+  height: 300
+  layers:
+    - module: solid
+      colors:
+        - '#1f4294'
 #+END_SRC
 
 This module only reads the first color in the =colors= list, this is the
 intention so the colors list can be re-used for modules that wants more than
 one color.
 
-*** Squares
-The =squares= module generates squares that covers the full image, it also
-accepts =size= as a parameter to determine how many percentage of the image
-width the squares should be in size and a color list that it will pick from
-and start over when the list runs out.
-
-The layers specification for a =squares= module can look like this:
-#+BEGIN_SRC yaml
-  - module: squares
-    size: 10
-    colors:
-      - '#0f1784'
-      - '#420f84'
-      - '#0f5284'
-      - '#0f3284'
-      - '#270f84'
-      - '#0f6d84'
-      - '#5d0f84'
-#+END_SRC
-
-*** Triangles
-The =triangles= module generates a polygon objects that covers the full
-image, it also accepts =size= as a parameter to determine how many percentage
-of the image width the triangles should be in size and a color list that it
-will pick from and start over when the list runs out.
-
-The layers specification for a =triangles= module can look like this:
-#+BEGIN_SRC yaml
-  - module: triangles
-    size: 10
-    colors:
-      - '#0f1784'
-      - '#420f84'
-      - '#0f5284'
-      - '#0f3284'
-      - '#270f84'
-      - '#0f6d84'
-#+END_SRC
-
 *** Stripes
+[[https://raw.githubusercontent.com/etu/absvgen/main/.github/stripes.svg]]
+
 The =stripes= modules generates vertical stripes on top of a background, it
 accepts a =size= as a parameter to determine how many percentage of the image
 with each stripe should be, this is also used for spacing between each
 stripe. Then it accepts the =colors= list and will make a single stripe for
 each color once.
 
-The layers specification for a =stripes= module can look like this:
+This is the configuration used for the =stripes= module on top of a =solid=
+module rendered above:
 #+BEGIN_SRC yaml
-  - module: stripes
-    size: 4
-    colors:
-      - '#0f3284'
-      - '#0f3284'
-      - '#0f3284'
+  width: 500
+  height: 300
+  layers:
+    - module: solid
+      colors:
+        - '#1f4294'
+    - module: stripes
+      size: 4
+      colors:
+        - '#0f3284'
+        - '#0f3284'
+        - '#0f3284'
 #+END_SRC
 
 *** Dummy
