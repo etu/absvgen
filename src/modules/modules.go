@@ -1,6 +1,11 @@
 package modules
 
-import "github.com/etu/absvgen/src/spec"
+import (
+	"fmt"
+
+	"github.com/etu/absvgen/src/log"
+	"github.com/etu/absvgen/src/spec"
+)
 
 type Module interface {
 	Render(spec.SpecLayer, spec.SpecFile) string
@@ -8,8 +13,11 @@ type Module interface {
 
 func Get(moduleName string) Module {
 	if moduleName == "solid" {
+		log.Print(fmt.Sprintf("[get module: %s] Requested module found, returning Solid{}", moduleName))
 		return Solid{}
 	}
+
+	log.Print(fmt.Sprintf("[get module: %s] Requested module not found, returning Dummy{}", moduleName))
 
 	return Dummy{}
 }
