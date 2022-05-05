@@ -1,7 +1,9 @@
 package spec
 
 import (
+	"bufio"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 
 	"gopkg.in/yaml.v2"
@@ -20,14 +22,26 @@ type SpecLayer struct {
 }
 
 func New(specFile string) SpecFile {
-	filename, _ := filepath.Abs(specFile)
-	yamlFile, err := ioutil.ReadFile(filename)
-
-	if err != nil {
-		panic(err)
-	}
-
 	var spec SpecFile
+	var yamlFile []byte
+	var err error
+
+	// If we get special filename "-", read from stdin instead of a file
+	if specFile == "-" {
+		scanner := bufio.NewScanner(os.Stdin)
+
+		for scanner.Scan() {
+			yamlFile = append(yamlFile, byte(10))
+			yamlFile = append(yamlFile, scanner.Bytes()...)
+		}
+	} else {
+		filename, _ := filepath.Abs(specFile)
+		yamlFile, err = ioutil.ReadFile(filename)
+
+		if err != nil {
+			panic(err)
+		}
+	}
 
 	err = yaml.Unmarshal(yamlFile, &spec)
 

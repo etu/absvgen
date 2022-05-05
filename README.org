@@ -12,6 +12,14 @@ So basic usage goes like this:
   absvgen --spec path/to/spec.yaml [--debug]
 #+END_SRC
 
+One can also give the special filename ~-~ to the spec flag to make it read
+the config file from stdin, either of these variations is fine:
+#+BEGIN_SRC
+  cat path/to/spec.yaml | absvgen --spec - [--debug]
+
+  absvgen --spec - [--debug] < path/to/spec.yaml
+#+END_SRC
+
 This will output the resulting SVG to stdout, if you have the debug flag
 enabled, the debug messages will be on stderr.
 
