@@ -73,6 +73,25 @@ The layers specification for a =squares= module can look like this:
       - '#5d0f84'
 #+END_SRC
 
+*** Triangles
+The =triangles= module generates a polygon objects that covers the full
+image, it also accepts =size= as a parameter to determine how many percentage
+of the image width the triangles should be in size and a color list that it
+will pick from and start over when the list runs out.
+
+The layers specification for a =triangles= module can look like this:
+#+BEGIN_SRC yaml
+  - module: triangles
+    size: 10
+    colors:
+      - '#0f1784'
+      - '#420f84'
+      - '#0f5284'
+      - '#0f3284'
+      - '#270f84'
+      - '#0f6d84'
+#+END_SRC
+
 *** Dummy
 There's a =dummy= module that only emits a comment block that it was
 used. The purpose of this was mostly to have a fallback if no valid module
