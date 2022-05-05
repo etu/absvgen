@@ -1,0 +1,3 @@
+* absvgen (abstract svg generator)
+absvgen is a command line tool to specify a set of rules and to get an SVG
+back that can then be converted to different formats using other tools.
