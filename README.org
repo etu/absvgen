@@ -1,3 +1,61 @@
 * absvgen (abstract svg generator)
 absvgen is a command line tool to specify a set of rules and to get an SVG
 back that can then be converted to different formats using other tools.
+
+** Basic YAML config file structure
+So the configuration file is a YAML file. The basic file looks like this:
+#+BEGIN_SRC yaml
+  width: 500
+  height: 300
+  layers: []
+#+END_SRC
+
+The layers key is a list of layers to render into your SVG, the layers should
+consist of modules. The modules uses different options to make different
+patterns on the resulting image.
+
+** Modules
+*** Solid
+The =solid= module generates a rectangle object that takes up the full image,
+it also accepts a color as input to use as color for the rectangle.
+
+The layers specification for a =solid= module can look like this:
+#+BEGIN_SRC yaml
+  - module: solid
+    colors:
+      - magenta
+#+END_SRC
+
+This module only reads the first color in the =colors= list, this is the
+intention so the colors list can be re-used for modules that wants more than
+one color.
+
+*** Squares
+The =squares= module generates squares that covers the full image, it also
+accepts =size= as a parameter to determine how many percentage of the image
+width the squares should be in size and a color list that it will pick from
+and start over when the list runs out.
+
+The layers specification for a =squares= module can look like this:
+#+BEGIN_SRC yaml
+  - module: squares
+    size: 10
+    colors:
+      - '#0f1784'
+      - '#420f84'
+      - '#0f5284'
+      - '#0f3284'
+      - '#270f84'
+      - '#0f6d84'
+      - '#5d0f84'
+#+END_SRC
+
+*** Dummy
+There's a =dummy= module that only emits a comment block that it was
+used. The purpose of this was mostly to have a fallback if no valid module
+was selected.
+
+The layers specification for a =dummy= module can look like this:
+#+BEGIN_SRC yaml
+  - module: dummy
+#+END_SRC
