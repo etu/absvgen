@@ -100,6 +100,23 @@ The layers specification for a =triangles= module can look like this:
       - '#0f6d84'
 #+END_SRC
 
+*** Stripes
+The =stripes= modules generates vertical stripes on top of a background, it
+accepts a =size= as a parameter to determine how many percentage of the image
+with each stripe should be, this is also used for spacing between each
+stripe. Then it accepts the =colors= list and will make a single stripe for
+each color once.
+
+The layers specification for a =stripes= module can look like this:
+#+BEGIN_SRC yaml
+  - module: stripes
+    size: 4
+    colors:
+      - '#0f3284'
+      - '#0f3284'
+      - '#0f3284'
+#+END_SRC
+
 *** Dummy
 There's a =dummy= module that only emits a comment block that it was
 used. The purpose of this was mostly to have a fallback if no valid module
