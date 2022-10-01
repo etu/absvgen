@@ -13,19 +13,19 @@ type Hexagons struct{}
 
 func (m Hexagons) Render(specLayer spec.SpecLayer, specFile spec.SpecFile) string {
 	// Calculate size of squares
-	edgeSize := uint16(float32(specFile.Width) / float32(100) * float32(specLayer.Size))
-	shortDiagonalSize := uint16(math.Sqrt(3) * float64(edgeSize))
-	triangleHeight := uint16(math.Sqrt(float64(edgeSize*edgeSize) - (0.5*float64(shortDiagonalSize))*(0.5*float64(shortDiagonalSize))))
+	edgeSize := float64(specFile.Width) / float64(100) * float64(specLayer.Size)
+	shortDiagonalSize := math.Sqrt(3) * float64(edgeSize)
+	triangleHeight := math.Sqrt(float64(edgeSize*edgeSize) - (0.5*float64(shortDiagonalSize))*(0.5*float64(shortDiagonalSize)))
 
 	offsetStart := false
-	x := uint16(0)
-	y := uint16(0)
+	x := float64(0)
+	y := float64(0)
 	colorSelector := 0
 
 	var hexagons []string
 	hexagons = append(hexagons, "<g>")
 
-	for y < specFile.Height+triangleHeight {
+	for y < float64(specFile.Height)+triangleHeight {
 		//     B
 		//    / \
 		//  A/   \C
@@ -76,7 +76,7 @@ func (m Hexagons) Render(specLayer spec.SpecLayer, specFile spec.SpecFile) strin
 
 		// Generate a square
 		hexagons = append(hexagons, fmt.Sprintf(
-			"<polygon points=\"%d,%d %d,%d %d,%d %d,%d %d,%d %d,%d\" style=\"fill: %s\" />",
+			"<polygon points=\"%f,%f %f,%f %f,%f %f,%f %f,%f %f,%f\" style=\"fill: %s\" />",
 			ax,
 			ay,
 			bx,
@@ -111,7 +111,7 @@ func (m Hexagons) Render(specLayer spec.SpecLayer, specFile spec.SpecFile) strin
 		}
 
 		// Jump to next row when width is filled
-		if x > specFile.Width {
+		if x > float64(specFile.Width) {
 			offsetStart = !offsetStart
 			x = 0
 			y += edgeSize + triangleHeight
